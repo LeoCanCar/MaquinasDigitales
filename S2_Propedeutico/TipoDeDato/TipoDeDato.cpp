@@ -12,3 +12,7 @@ int main(){
 
     return 0;
 }
+
+int my_func(){
+    return
+}
