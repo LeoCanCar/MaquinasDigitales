@@ -7,5 +7,3 @@ int main(){
 
     return 0;
 }
-
-double my_double= 2.23
