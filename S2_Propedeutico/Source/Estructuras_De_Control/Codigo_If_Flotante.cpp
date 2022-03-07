@@ -14,7 +14,7 @@ using namespace std;
 
 int main(){
     float numero;  /*creo la variable*/
-    cout << "Ingresa un numero: "; /*doy la instrucción de ingresar un número*/
+    cout << "Ingresa un numero entre: "; /*doy la instrucción de ingresar un número*/
     cin >> numero; 
 
     if (numero > 0){
