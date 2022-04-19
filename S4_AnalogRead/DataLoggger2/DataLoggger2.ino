@@ -1,11 +1,11 @@
 #include <SD.h> //Es la biblioteca
-#include <Adafruit_BME280.h>
+#include <Adafruit_BMP280.h>
 File archivo;
 
 const int LED_SENSOR = 33;
 const int LED_SD = 32;
 const int PHOTORES = 35;
-Adafruit_BME280 bme;
+Adafruit_BMP280 bme;
 char payload[50];
 
 void setup() {
