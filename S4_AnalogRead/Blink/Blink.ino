@@ -1,5 +1,5 @@
-const int digitalWritePin = 34;
-//const int digitalReadPin = 34;
+const int digitalWritePin = 32;
+//const int digitalReadPin2 = 34;
 //#define digitalReadPin34
 
 void setup() {
