@@ -1,5 +1,6 @@
 #include <AWS_IOT.h>
 #include <WiFi.h>
+#include <Adafruit_BMP280.h>
 
 //Wifi & AWS Parameters
 #define WIFI_SSID    "INFINITUM12F6_2.4" // SSID of your WIFI
@@ -8,13 +9,17 @@
 #define MQTT_TOPIC "$aws/things/Axolote_ESP32_Leo/shadow/update" //topic for the MQTT data
 #define AWS_HOST "a9zwczf1oqpq2-ats.iot.us-east-1.amazonaws.com" // your host for uploading data to AWS,
 
+const int PHOTORES = 35;
+
 AWS_IOT aws;
 
+Adafruit_BMP280 bme;
 char payload [300];
 bool status = WL_IDLE_STATUS;
 
 void setup() {
   Serial.begin(115200);
+  bme.begin(0x76);
 
   //Conexion WiFi
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
@@ -42,7 +47,13 @@ void setup() {
 
 void loop() {
 
-  sprintf(payload,"%s","Hello World!");
+  sprintf(payload,"{"
+   "\"deviceID\":\"AxoloteESP32_Leo\","
+   "\"Press_hPA\":%06.2f,"
+   "\"Luz_adim\":%04d"
+   "}",bme.readPressure()/100,analogRead(PHOTORES));
+
+  //sprintf(payload,"%04d,%06.2f", analogRead(PHOTORES),bme.readPressure()/100);;
   Serial.println("Publishing:- ");
   Serial.println(payload);
 
@@ -52,5 +63,6 @@ void loop() {
   }
   Serial.println("Success!");   
    
-  delay(1000);
+  delay(600000);
+  ESP.restart();
 }
